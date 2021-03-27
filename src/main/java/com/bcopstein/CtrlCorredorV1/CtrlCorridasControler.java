@@ -23,6 +23,9 @@ public class CtrlCorridasControler {
   private CalculaEstatisticasService calculaEstatisticasService;
 
   @Autowired
+  private CalculaPerformanceService calculaPerformanceService;
+
+  @Autowired
   public CtrlCorridasControler(CorredorRepository corredorRepository, EventoRepository eventoRepository) {
     this.corredorRepository = corredorRepository;
     this.eventoRepository = eventoRepository;
@@ -64,5 +67,11 @@ public class CtrlCorridasControler {
   @CrossOrigin(origins = "*")
   public EstatisticasDTO estatisticas(@RequestParam final int distancia) {
     return calculaEstatisticasService.execute(distancia);
+  }
+
+  @GetMapping("/aumentoPerformance")
+  @CrossOrigin(origins = "*")
+  public List<Evento> aumentoPerformance(@RequestParam final int distancia, @RequestParam final int ano) {
+    return calculaPerformanceService.execute(distancia, ano);
   }
 }

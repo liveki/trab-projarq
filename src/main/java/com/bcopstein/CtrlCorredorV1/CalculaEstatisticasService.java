@@ -3,23 +3,16 @@ package com.bcopstein.CtrlCorredorV1;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
 
 @Service
 public class CalculaEstatisticasService {
-  JdbcTemplate jdbcTemplate;
 
   @Autowired
-  public CalculaEstatisticasService(JdbcTemplate jdbcTemplate) {
-    this.jdbcTemplate = jdbcTemplate;
-  }
+  private EventoRepository eventoRepositoy;
 
   public EstatisticasDTO execute(int distancia) {
-    List<Evento> eventos = this.jdbcTemplate.query("SELECT * from eventos WHERE distancia=?",
-        (rs, rowNum) -> new Evento(rs.getInt("id"), rs.getString("nome"), rs.getInt("dia"), rs.getInt("mes"),
-            rs.getInt("ano"), rs.getInt("distancia"), rs.getInt("horas"), rs.getInt("minutos"), rs.getInt("segundos")),
-        distancia);
+    List<Evento> eventos = eventoRepositoy.findByDistance(distancia);
 
     double mediaMinutos = calculaMedia(eventos);
     double medianaMinutos = calculaMediana(eventos);

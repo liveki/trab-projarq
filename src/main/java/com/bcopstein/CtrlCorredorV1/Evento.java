@@ -1,70 +1,70 @@
 package com.bcopstein.CtrlCorredorV1;
 
 public class Evento {
-    private int id;
-    private String nome;
-    // Data do evento
-    private int dia;
-    private int mes;
-    private int ano;
-    // Distancia percorrida
-    private int distancia; // metros
-    // Tempo que o corredor levou para percorrer a distancia
-    private int horas;
-    private int minutos;
-    private int segundos;
-    
-    public Evento(int id,String nome, int dia, int mes, int ano, int distancia, int horas, int minutos, int segundos) {
-        this.id = id;
-        this.nome = nome;
-        this.dia = dia;
-        this.mes = mes;
-        this.ano = ano;
-        this.distancia = distancia;
-        this.horas = horas;
-        this.minutos = minutos;
-        this.segundos = segundos;
-    }
+  private int id;
+  private String nome;
+  // Data do evento
+  private int dia;
+  private int mes;
+  private int ano;
+  // Distancia percorrida
+  private int distancia; // metros
+  // Tempo que o corredor levou para percorrer a distancia
+  private int horas;
+  private int minutos;
+  private int segundos;
 
-    public int getId() {
-        return id;
-    }
+  public Evento(int id, String nome, int dia, int mes, int ano, int distancia, int horas, int minutos, int segundos) {
+    this.id = id;
+    this.nome = nome;
+    this.dia = dia;
+    this.mes = mes;
+    this.ano = ano;
+    this.distancia = distancia;
+    this.horas = horas;
+    this.minutos = minutos;
+    this.segundos = segundos;
+  }
 
-    public String getNome() {
-        return nome;
-    }
+  public int getId() {
+    return id;
+  }
 
-    public int getDia() {
-        return dia;
-    }
+  public String getNome() {
+    return nome;
+  }
 
-    public int getMes() {
-        return mes;
-    }
+  public int getDia() {
+    return dia;
+  }
 
-    public int getAno() {
-        return ano;
-    }
+  public int getMes() {
+    return mes;
+  }
 
-    public int getDistancia() {
-        return distancia;
-    }
+  public int getAno() {
+    return ano;
+  }
 
-    public int getHoras() {
-        return horas;
-    }
+  public int getDistancia() {
+    return distancia;
+  }
 
-    public int getMinutos() {
-        return minutos;
-    }
+  public int getHoras() {
+    return horas;
+  }
 
-    public int getSegundos() {
-        return segundos;
-    }
+  public int getMinutos() {
+    return minutos;
+  }
 
-    @Override
-    public String toString() {
-        return "Evento [ano=" + ano + ", dia=" + dia + ", distancia=" + distancia + ", horas=" + horas + ", id=" + id
-                + ", mes=" + mes + ", minutos=" + minutos + ", nome=" + nome + ", segundos=" + segundos + "]";
-    }
+  public int getSegundos() {
+    return segundos;
+  }
+
+  @Override
+  public String toString() {
+    return "Evento [ano=" + ano + ", dia=" + dia + ", distancia=" + distancia + ", horas=" + horas + ", id=" + id
+        + ", mes=" + mes + ", minutos=" + minutos + ", nome=" + nome + ", segundos=" + segundos + "]";
+  }
 }

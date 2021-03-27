@@ -49,4 +49,18 @@ public class EventoRepository implements Repository<Evento> {
     return false;
   }
 
+  public List<Evento> findByDistance(int distancia) {
+    return this.jdbcTemplate.query("SELECT * from eventos WHERE distancia=?",
+        (rs, rowNum) -> new Evento(rs.getInt("id"), rs.getString("nome"), rs.getInt("dia"), rs.getInt("mes"),
+            rs.getInt("ano"), rs.getInt("distancia"), rs.getInt("horas"), rs.getInt("minutos"), rs.getInt("segundos")),
+        distancia);
+  }
+
+  public List<Evento> findByDistanceAndYear(int distancia, int ano) {
+    return this.jdbcTemplate.query("SELECT * from eventos WHERE distancia=? AND ano=?",
+        (rs, rowNum) -> new Evento(rs.getInt("id"), rs.getString("nome"), rs.getInt("dia"), rs.getInt("mes"),
+            rs.getInt("ano"), rs.getInt("distancia"), rs.getInt("horas"), rs.getInt("minutos"), rs.getInt("segundos")),
+        distancia, ano);
+  }
+
 }
