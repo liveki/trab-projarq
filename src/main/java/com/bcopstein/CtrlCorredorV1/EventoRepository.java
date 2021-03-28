@@ -29,24 +29,12 @@ public class EventoRepository implements Repository<Evento> {
   }
 
   @Override
-  public void update(Evento data) {
-    // TODO Auto-generated method stub
-
-  }
-
-  @Override
   public List<Evento> findAll() {
     List<Evento> resp = this.jdbcTemplate.query("SELECT * from eventos",
         (rs, rowNum) -> new Evento(rs.getInt("id"), rs.getString("nome"), rs.getInt("dia"), rs.getInt("mes"),
             rs.getInt("ano"), rs.getInt("distancia"), rs.getInt("horas"), rs.getInt("minutos"), rs.getInt("segundos")));
 
     return resp;
-  }
-
-  @Override
-  public boolean delete(Evento data) {
-    // TODO Auto-generated method stub
-    return false;
   }
 
   public List<Evento> findByDistance(int distancia) {

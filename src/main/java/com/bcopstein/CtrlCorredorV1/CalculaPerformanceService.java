@@ -1,8 +1,5 @@
 package com.bcopstein.CtrlCorredorV1;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +10,7 @@ public class CalculaPerformanceService {
   @Autowired
   private EventoRepository eventoRepository;
 
-  public List<Evento> execute(int distancia, int ano) {
+  public PerformanceDTO execute(int distancia, int ano) {
     List<Evento> eventos = eventoRepository.findByDistanceAndYear(distancia, ano);
 
     for (int i = 0; i < eventos.size(); i++) {
@@ -27,14 +24,26 @@ public class CalculaPerformanceService {
     }
 
     int melhorPerformance = 0;
-    String nomeEventoA;
-    String nomeEventoB;
+    String nomeEventoA = "";
+    String nomeEventoB = "";
 
-    // TODO: algoritmo para percorrer de dois em dois eventos (tratar eventos
-    // ímpares)
-    // TODO: algoritmo para percorrer eventos
+    for (int i = 1; i < eventos.size(); i++) {
+      int diferencaTempo = (int) (convertToSeconds(eventos.get(i)) - convertToSeconds(eventos.get(i - 1)));
 
-    return eventos;
+      if (melhorPerformance == 0) {
+        melhorPerformance = diferencaTempo;
+        nomeEventoA = eventos.get(i).getNome();
+        nomeEventoB = eventos.get(i - 1).getNome();
+      } else if (diferencaTempo < melhorPerformance) {
+        nomeEventoA = eventos.get(i).getNome();
+        nomeEventoB = eventos.get(i - 1).getNome();
+        melhorPerformance = diferencaTempo;
+      }
+    }
+
+    PerformanceDTO performanceDTO = new PerformanceDTO(nomeEventoA, nomeEventoB);
+
+    return performanceDTO;
   }
 
   private long convertToSeconds(Evento evento) {

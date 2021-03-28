@@ -36,22 +36,10 @@ class CorredorRepository implements Repository<Corredor> {
   }
 
   @Override
-  public void update(Corredor corredor) {
-    this.jdbcTemplate.update("UPDATE corredores SET cpf=?, nome=?, diaDn=?, mesDn=?, anoDn=?, genero=? WHERE cpf=?",
-        corredor.getCpf(), corredor.getNome(), corredor.getDiaDn(), corredor.getMesDn(), corredor.getAnoDn(),
-        corredor.getGenero(), corredor.getCpf());
-  }
-
-  @Override
   public List<Corredor> findAll() {
     List<Corredor> resp = this.jdbcTemplate.query("SELECT * from corredores",
         (rs, rowNum) -> new Corredor(rs.getString("cpf"), rs.getString("nome"), rs.getInt("diaDn"), rs.getInt("mesDn"),
             rs.getInt("anoDn"), rs.getString("genero")));
     return resp;
-  }
-
-  @Override
-  public boolean delete(Corredor corredor) {
-    return true;
   }
 }
